@@ -4,6 +4,11 @@ from django.db import models
 from utils import TYPES, DATES
 
 
+class Compte(models.Model):
+    """Comptes bancaires à suivre"""
+    compte = models.CharField(max_length=250)
+
+
 class Metacategorie(models.Model):
     """Regroupement de catégories de dépenses"""
     metacategorie = models.CharField(max_length=250)
@@ -14,7 +19,7 @@ class Metacategorie(models.Model):
 
 class Categorie(models.Model):
     """Catégories de dépenses"""
-    meta = models.ForeignKey(Metacategorie)
+    metacategorie = models.ForeignKey(Metacategorie)
     categorie = models.CharField(max_length=250)
 
     def __unicode__(self):
@@ -23,6 +28,7 @@ class Categorie(models.Model):
 
 class Ligne(models.Model):
     """ligne de compte"""
+    compte = models.ForeignKey(Compte)
     mois = models.CharField(max_length=20, choices=zip(DATES, DATES))
     libelle = models.CharField(max_length=1000)
     categorie = models.ForeignKey(Categorie)
