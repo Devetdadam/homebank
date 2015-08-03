@@ -8,6 +8,9 @@ class Compte(models.Model):
     """Comptes bancaires à suivre"""
     compte = models.CharField(max_length=250)
 
+    def __unicode__(self):
+        return "%s" % (self.compte)
+
 
 class Metacategorie(models.Model):
     """Regroupement de catégories de dépenses"""
