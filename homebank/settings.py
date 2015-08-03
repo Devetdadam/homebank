@@ -1,3 +1,5 @@
+# coding: utf8
+
 """
 Django settings for homebank project.
 
@@ -37,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'comptes',
 )
 
 MIDDLEWARE_CLASSES = (
