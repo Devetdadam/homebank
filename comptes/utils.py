@@ -1,4 +1,5 @@
 # coding: utf8
+
 TYPES = (
     u'DÉBIT',
     u'CRÉDIT'
