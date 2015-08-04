@@ -8,6 +8,7 @@ from utils import TYPES, DATES
 class Compte(models.Model):
     """Comptes bancaires à suivre"""
     compte = models.CharField(max_length=250)
+    alias = models.CharField(max_length=250, help_text='Un seul mot SVP')
 
     def __unicode__(self):
         return "%s" % (self.compte)
@@ -15,7 +16,7 @@ class Compte(models.Model):
 
 class Metacategorie(models.Model):
     """Regroupement de catégories de dépenses"""
-    metacategorie = models.CharField(max_length=250)
+    metacategorie = models.CharField(max_length=250, help_text='Un seul mot SVP')
 
     def __unicode__(self):
         return "%s" % (self.metacategorie)
@@ -24,7 +25,7 @@ class Metacategorie(models.Model):
 class Categorie(models.Model):
     """Catégories de dépenses"""
     metacategorie = models.ForeignKey(Metacategorie)
-    categorie = models.CharField(max_length=250)
+    categorie = models.CharField(max_length=250, help_text='Un seul mot SVP')
 
     def __unicode__(self):
         return "%s" % (self.categorie)
@@ -38,3 +39,6 @@ class Ligne(models.Model):
     categorie = models.ForeignKey(Categorie)
     montant = models.DecimalField(max_digits=10, decimal_places=2)
     genre = models.CharField(max_length=6, choices=zip(TYPES, TYPES))
+
+    def __unicode__(self):
+        return "%s - %s - %s - %s - %.2f" % (self.compte.alias, self.mois, self.categorie, self.genre, self.montant)

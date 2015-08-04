@@ -1,0 +1,12 @@
+{% extends "comptes/base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <h2>Liste des Métacatégories</h2>
+
+    {% for meta in metacategorie_list %}
+        <h4>{{ meta }}</h4>
+    {% endfor %}
+
+{% endblock content %}
