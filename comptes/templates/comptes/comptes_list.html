@@ -1,0 +1,12 @@
+{% extends "comptes/base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <h2>Liste des comptes</h2>
+
+    {% for compte in compte_list %}
+        <h4>{{ compte }}</h4>
+    {% endfor %}
+
+{% endblock content %}
