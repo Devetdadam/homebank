@@ -41,4 +41,28 @@ class Ligne(models.Model):
     genre = models.CharField(max_length=6, choices=zip(TYPES, TYPES))
 
     def __unicode__(self):
-        return "%s - %s - %s - %s - %.2f" % (self.compte.alias, self.mois, self.categorie, self.genre, self.montant)
+        return "%s - %s - %s - %s - %.2f" % (
+            self.compte.alias,
+            self.mois,
+            self.categorie,
+            self.genre,
+            self.montant
+        )
+
+
+class Rapport(models.Model):
+    """partie commune des rapports"""
+    pass
+
+    class Meta:
+        abstract = True
+
+
+class RapportStatique(Rapport):
+    """rapports mensuels et annuels"""
+    pass
+
+
+class RapportDynamique(Rapport):
+    """rapports paramétrables"""
+    pass

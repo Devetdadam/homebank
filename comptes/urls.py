@@ -6,7 +6,7 @@ from .views import AccueilTemplateView
 
 urlpatterns = [
     # page d'accueil
-    url(r'^accueil/',
+    url(r'^',
         AccueilTemplateView.as_view(),
         name='accueil'),
 ]

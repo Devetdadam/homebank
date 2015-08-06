@@ -1,0 +1,131 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <!--[if IE]>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <![endif]-->
+        <title>Home Bank</title> 
+        <!-- BOOTSTRAP CORE STYLE CSS-->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+        <!-- FONTAWESOME STYLE CSS -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}" />
+        <!-- CUSTOM STYLE CSS -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+        <!-- GOOGLE FONT -->
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"
+        type="text/css">
+    </head>
+    
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">HOME BANK</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="portfolio.html">ACCUEIL</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                              aria-haspopup="true" aria-expanded="false">
+                            OPÉRATIONS <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Importer un relevé</a></li>
+                                <li><a href="#">Ajouter une opération</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                              aria-haspopup="true" aria-expanded="false">
+                            RAPPORTS <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Mensuel</a></li>
+                                <li><a href="#">Annuel</a></li>
+                                <li><a href="#">Paramétré</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                              aria-haspopup="true" aria-expanded="false">
+                            ADMIN <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Mes Comptes</a></li>
+                                <li><a href="#">Mes Catégories</a></li>
+                                <li><a href="#">Mes Opérations</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="contact.html">PROFIL</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--/.NAVBAR END-->
+
+        <section id="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1></h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="content">
+            {% block content %}
+            Ici le contenu de chaque page
+            {% endblock %}
+        </section>
+        <section id="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CORE JQUERY -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+        <script src="{% static 'plugins/jquery-1.10.2.js' %}"></script>
+        <!-- BOOTSTRAP SCRIPTS -->
+        <script src="{% static 'plugins/bootstrap.js' %}"></script>
+        <!-- CUSTOM SCRIPTS -->
+        <script src="{% static 'js/custom.js' %}"></script>
+
+        <footer class="section section-primary">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <h1></h1>
+                        <p>Home Bank est téléchargeable librement sur
+                            <a href="https://github.com/Devetdadam/homebank.git">GitHub</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+         <!--/.FOOTER END-->
+    </body>
+
+</html>

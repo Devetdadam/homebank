@@ -7,7 +7,7 @@ from .models import Compte, Metacategorie
 # Page d'Accueil
 class AccueilTemplateView(TemplateView):
     """page d'accueil de l'application"""
-    template_name = "comptes/accueil.html"
+    template_name = "accueil.html"
 
 
 # Vues du modèle Compte
