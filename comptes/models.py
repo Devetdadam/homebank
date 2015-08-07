@@ -18,20 +18,12 @@ class Compte(models.Model):
         return "%s" % (self.compte)
 
 
-class Metacategorie(models.Model):
-    """Regroupement de catégories de dépenses"""
-    metacategorie = models.CharField(
-        max_length=250, help_text='Un seul mot SVP'
-    )
-
-    def __unicode__(self):
-        return "%s" % (self.metacategorie)
-
-
 class Categorie(models.Model):
     """Catégories de dépenses"""
-    metacategorie = models.ForeignKey(Metacategorie)
+    proprietaire = models.ForeignKey(User)
+    metacategorie = models.ForeignKey('self', related_name='meta', null=True, blank=True)
     categorie = models.CharField(max_length=250, help_text='Un seul mot SVP')
+    ismeta = models.BooleanField(default='False')
 
     def __unicode__(self):
         return "%s" % (self.categorie)

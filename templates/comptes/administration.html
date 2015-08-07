@@ -14,13 +14,27 @@
                             <a class="btn btn-block administration" href="{% url 'compte_update' compte.alias %}">
                                 {{ compte }} ({{ compte.alias }})
                             </a>
-                            <!--<a href="{% url 'compte_update' compte.alias %}"><li class="list-group-item">{{ compte }}</li></a>-->
                             {% endfor %}
                             <a class="btn btn-success" href="{% url 'compte_create' %}">Ajouter un compte</a>
                         </ul>
                     </div>
                     <div class="col-md-4">
                         <h3>Mes catégories</h3>
+                        {% for meta in metacategories_list %}
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">{{ meta }}</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <ul class="list-group">
+                                    {%for categorie in meta.meta.all %}
+                                        <li class="list-group-item">{{ categorie }}</li>
+                                    {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <a class="btn btn-success" href="{% url 'categorie_create' %}">Ajouter une catégorie</a>
                     </div>
                     <div class="col-md-4">
                         <h3>Mes Opérations</h3>
