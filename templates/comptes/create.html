@@ -1,0 +1,39 @@
+<!-- page d'accueil -->
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="container">
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                <form method="post" action="" role="form" class="text-left" >
+                {% csrf_token %}
+                    {% for field in form %}
+                    <div class="form-group">
+                      <label class="control-label" for="id_{{ field.name }}">{{ field.label }}</label>
+                        <div class="form-group">
+                          <input class="form-control"
+                            name="{{ field.name }}"
+                            id="id_{{ field.name }}" 
+                            type = "text"
+                            placeholder="{{ field.help_text }}"
+                            {% if field.value %}
+                                value="{{ field.value }}"
+                            {% endif %}
+                            >
+                           </div>
+                    </div>
+                    {% endfor %}
+                        <button type="submit" class="btn btn-block btn-primary" value="Valider">Valider</button>
+                        <input type="hidden" name="next" value="" />
+                </form>
+            </div>
+                    <div class="col-md-4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

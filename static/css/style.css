@@ -64,21 +64,22 @@ color: #FFF;
 
 
 /* CLASS FOR REMOVING PADDING IN NAVBAR*/
-
-
 .navbar-pad-original {
       padding:0px;
 }
 
 
+/* CLASS FOR ACCUEIL PAGE */
+.accueil a:link {
+  text-decoration: none;
+  color: black;
 
-/* CARUOSEL STYLE OR SLIDESHOW STYLE*/
-
-
-.back-light {
-    background-color:rgba(0, 0, 0, 0.50);
-    padding:10px;
 }
+
+.accueil a:hover {
+    color: #428bca;
+}
+
 /*NOTE SECION STYLE*/
 .note-sec {
      padding-bottom:50px;
@@ -263,4 +264,16 @@ border: 1px solid #e1e1e1;
         color:#fff;
     }
 
-   
+
+/* PROJECT SPECIFIC STYLES */
+
+/* messages d'erreur lors du login */
+.messages {
+    color: red;
+    font-style: bold;
+}
+
+/* dans administration.html (Mes Comptes) le texte des boutons est aligné à gauche */
+.administration {
+  text-align: left;
+}

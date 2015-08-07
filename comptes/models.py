@@ -1,14 +1,18 @@
 # coding: utf8
 
 from django.db import models
+from django.contrib.auth.models import User
 
 from utils import TYPES, DATES
 
 
 class Compte(models.Model):
     """Comptes bancaires à suivre"""
-    compte = models.CharField(max_length=250)
-    alias = models.CharField(max_length=250, help_text='Un seul mot SVP')
+    proprietaire = models.ForeignKey(User)
+    compte = models.CharField(max_length=250, help_text='Nom de votre compte')
+    alias = models.CharField(max_length=250,
+                             help_text='Votre compte en un seul mot'
+                             )
 
     def __unicode__(self):
         return "%s" % (self.compte)
@@ -16,7 +20,9 @@ class Compte(models.Model):
 
 class Metacategorie(models.Model):
     """Regroupement de catégories de dépenses"""
-    metacategorie = models.CharField(max_length=250, help_text='Un seul mot SVP')
+    metacategorie = models.CharField(
+        max_length=250, help_text='Un seul mot SVP'
+    )
 
     def __unicode__(self):
         return "%s" % (self.metacategorie)

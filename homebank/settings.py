@@ -58,7 +58,11 @@ ROOT_URLCONF = 'homebank.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates/'),
+            os.path.join(BASE_DIR, 'templates/registration/'),
+            os.path.join(BASE_DIR, 'templates/comptes/'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -108,3 +112,6 @@ STATICFILES_DIRS = (
 )
 # Media files :  les releves bancaires uploadés
 MEDIA_URL = '/uploads/'
+
+# URL de Login
+LOGIN_URL = '/'

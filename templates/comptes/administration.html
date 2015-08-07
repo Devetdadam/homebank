@@ -1,0 +1,32 @@
+<!-- page d'accueil -->
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="container">
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h3>Mes comptes</h3>
+                        <ul class="list-group">
+                            {% for compte in comptes_list %}
+                            <a class="btn btn-block administration" href="{% url 'compte_update' compte.alias %}">
+                                {{ compte }} ({{ compte.alias }})
+                            </a>
+                            <!--<a href="{% url 'compte_update' compte.alias %}"><li class="list-group-item">{{ compte }}</li></a>-->
+                            {% endfor %}
+                            <a class="btn btn-success" href="{% url 'compte_create' %}">Ajouter un compte</a>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h3>Mes catégories</h3>
+                    </div>
+                    <div class="col-md-4">
+                        <h3>Mes Opérations</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

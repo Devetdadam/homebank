@@ -1,0 +1,46 @@
+<!-- page d'accueil -->
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <div class="section">
+                    <div class="container accueil">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <a href="#">
+                                    <img src="{% static 'img/releve.png' %}" class="center-block img-responsive" width="200" height="200">
+                                    <h2>Importer
+                                      <br>un relevé</h2>
+                                </a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="#">
+                                    <img src="{% static 'img/operation.png' %}" class="center-block img-responsive" width="200" height="200">
+                                    <h2>Ajouter
+                                      <br>une opération</h2>
+                                </a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="#">
+                                    <img src="{% static 'img/rapport.png' %}" class="center-block img-responsive" width="200" height="200">
+                                    <h2>Éditer
+                                      <br>un rapport</h2>
+                                </a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="#">
+                                    <img src="{% static 'img/comptes.png' %}" class="center-block img-responsive" width="200" height="200">
+                                    <h2>Administrer
+                                      <br>mes comptes</h2>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

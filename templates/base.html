@@ -37,8 +37,9 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="portfolio.html">ACCUEIL</a>
+                            <a href="{% url 'accueil' %}">ACCUEIL</a>
                         </li>
+                        {% if user.is_authenticated %}
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                               aria-haspopup="true" aria-expanded="false">
@@ -66,14 +67,27 @@
                             ADMIN <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Mes Comptes</a></li>
+                                <li><a href="{% url 'comptes_list' %}">Mes Comptes</a></li>
                                 <li><a href="#">Mes Catégories</a></li>
                                 <li><a href="#">Mes Opérations</a></li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="contact.html">PROFIL</a>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                              aria-haspopup="true" aria-expanded="false">
+                            PROFIL <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Mon profil</a></li>
+                                <li><a href="{% url 'deconnexion' %}">Me déconnecter</a></li>
+                            </ul>
                         </li>
+                        <li><a href="#" style="color: #989898 ">Session {{ request.user }}</a></li>
+                    {% else %}
+                        <li class="dropdown">
+                            <a href="{% url 'connexion' %}">Me connecter</a></li>
+                        </li>
+                    {% endif %}
                     </ul>
                 </div>
             </div>

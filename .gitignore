@@ -9,9 +9,9 @@
 ###############
 logs/
 
-# Specific files #
-##################
-projectname/settings.py
+# Database
+##########
+*.sqlite3
 
 # OS generated files #
 ######################

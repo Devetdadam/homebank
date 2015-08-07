@@ -1,0 +1,46 @@
+<!-- page de connexion -->
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="container">
+        {% if form.errors %}
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4 text-center alert alert-danger">
+                    <strong>Email et/ou Mot de passe sont incorrects. <br>Merci d'essayer à nouveau.</strong>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="col-md-4 messages"></div>
+            <div class="col-md-4">
+                <form method="post" action="{% url 'django.contrib.auth.views.login' %}" role="form" class="text-left" >
+                {% csrf_token %}
+                    {% for field in form %}
+                    <div class="form-group">
+                      <label class="control-label" for="id_{{ field.name }}">{{ field.label }}</label>
+                        <div class="form-group">
+                          <input class="form-control"
+                            name="{{ field.name }}"
+                            id="id_{{ field.name }}" 
+                            type = "text"
+                            {% if value = '{{ field.field.widget.input_type }}' == 'password' %}
+                            type = "password"
+                            {% endif %}
+                            > 
+                            <p class="help-text">{{ field.help_text }} </p>
+                           </div>
+                    </div>
+                    {% endfor %}
+                        <button type="submit" class="btn btn-block btn-primary" value="login">Se connecter</button>
+                        <input type="hidden" name="next" value="{{ next }}" />
+                </form>
+                <p><a href="#">Mot de passe oublié ?</a></p>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+{% endblock %}
