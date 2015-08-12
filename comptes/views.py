@@ -128,7 +128,7 @@ class CategorieUpdateView(UpdateView):
     """Mise à jour d'une catégorie"""
     model = Categorie
     template_name = 'create.html'
-    fields = ['metacategorie', 'categorie', 'ismeta']
+    fields = ['categorie']
     slug_url_kwarg = 'categorie'
     slug_field = 'categorie'
     success_url = reverse_lazy('administration')

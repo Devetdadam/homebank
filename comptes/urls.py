@@ -40,5 +40,9 @@ urlpatterns = [
         CategorieCreateView.as_view(),
         name='categorie_create'),
 
+    url(r'^categorie/modifier/(?P<categorie>.+)/$',
+        CategorieUpdateView.as_view(),
+        name='categorie_update'),
+
 
 ]
