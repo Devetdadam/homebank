@@ -3,7 +3,13 @@ from django.forms import ModelForm
 from .models import Compte
 
 
-# class CompteForm(ModelForm):
+class CompteForm(ModelForm):
+    class Meta:
+        model = Compte
+        fields = ['compte', 'alias']
+
+
+# class MetacategorieForm(ModelForm):
 #     class Meta:
-#         model = Compte
-#         fields = ['compte', 'alias']
+#         model = Categorie
+#         fields = ['categorie']

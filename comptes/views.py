@@ -2,8 +2,10 @@
 from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.models import User
-from django.views.generic import ListView, TemplateView, CreateView, UpdateView
+from django.views.generic import ListView, TemplateView, CreateView, UpdateView, FormView
 from .models import Compte, Categorie
+# from .forms import MetacategorieForm
+
 # from .forms import CompteForm
 
 
@@ -67,30 +69,56 @@ class CompteUpdateView(UpdateView):
     success_url = reverse_lazy('administration')
 
 
-# Vues du modèle Catégorie
-# class CategorieListView(ListView):
-#     """Liste des catégories créés"""
-#     model = Categorie
-#     context_object_name = 'categories_list'
-#     template_name = 'administration.html'
+class MetacategorieCreateView(CreateView):
+    """Création d'une nouvelle métacatégorie"""
+    model = Categorie
+    template_name = 'create.html'
+    fields = ['categorie']
+    success_url = reverse_lazy('administration')
 
-#     def get_queryset(self):
-#         self.proprietaire = get_object_or_404(User, id=self.request.user.id)
-#         return Categorie.objects.filter(proprietaire=self.proprietaire)
+    # # avant d'enregistrer, on implémente le champ 'proprietaire'
+    # # avec la valeur du user connecté
+    def form_valid(self, form):
+        user = self.request.user
+        form.instance.proprietaire = user
+        form.instance.ismeta = True
+        return super(MetacategorieCreateView, self).form_valid(form)
+
+
+class MetacategorieUpdateView(UpdateView):
+    """Mise à jour d'une métacatégorie"""
+    model = Categorie
+    template_name = 'create.html'
+    fields = ['categorie']
+    slug_url_kwarg = 'metacategorie'
+    slug_field = 'categorie'
+    success_url = reverse_lazy('administration')
 
 
 class CategorieCreateView(CreateView):
     """Création d'une nouvelle catégorie"""
     model = Categorie
     template_name = 'create.html'
-    fields = ['metacategorie', 'categorie']
+    fields = ['categorie']
     success_url = reverse_lazy('administration')
+
+    def get_object(self):
+        return Categorie.objects.get(pk=self.request.GET.get('pk'))
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(CategorieCreateView, self).get_context_data(**kwargs)
+        context['metacategorie'] = Categorie.objects.get(pk=self.kwargs.get('pk', None))
+        return context
 
     # avant d'enregistrer, on implémente le champ 'proprietaire'
     # avec la valeur du user connecté
-    def form_valid(self, form):
+    def form_valid(self, form, **kwargs):
         user = self.request.user
         form.instance.proprietaire = user
+        metacategorie = Categorie.objects.get(pk=self.kwargs.get('pk', None))
+        form.instance.ismeta = False
+        form.instance.metacategorie = metacategorie
         return super(CategorieCreateView, self).form_valid(form)
 
 

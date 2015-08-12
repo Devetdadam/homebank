@@ -4,19 +4,21 @@ from django.conf.urls import url
 
 from .views import AccueilTemplateView, AdministrationListView,\
     CompteCreateView, CompteUpdateView,\
-    CategorieCreateView, CategorieUpdateView
+    CategorieCreateView, CategorieUpdateView,\
+    MetacategorieCreateView, MetacategorieUpdateView
 
 urlpatterns = [
-    # page d'accueil
+    # ACCUEIL
     url(r'^$',
         AccueilTemplateView.as_view(),
         name='accueil'),
 
-    # administration des comptes, categories et lignes
+    # ADMINISTRATION
     url(r'^administration/$',
         AdministrationListView.as_view(),
         name='administration'),
 
+    # COMPTES
     url(r'^comptes/nouveau/$',
         CompteCreateView.as_view(),
         name='compte_create'),
@@ -24,10 +26,19 @@ urlpatterns = [
         CompteUpdateView.as_view(),
         name='compte_update'),
 
-    url(r'^categorie/nouveau/$',
+    # METACATEGORIES
+    url(r'^metacategorie/nouvelle/$',
+        MetacategorieCreateView.as_view(),
+        name='metacategorie_create'),
+
+    url(r'^metacategorie/modifier/(?P<metacategorie>.+)/$',
+        MetacategorieUpdateView.as_view(),
+        name='metacategorie_update'),
+
+    # CATEGORIES
+    url(r'^categorie/nouvelle-categorie-dans-(?P<pk>.+)/$',
         CategorieCreateView.as_view(),
         name='categorie_create'),
-    url(r'^categorie/modifier/(?P<categorie>.+)/$',
-        CategorieUpdateView.as_view(),
-        name='categorie_update'),
+
+
 ]

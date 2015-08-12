@@ -13,12 +13,18 @@
                 {% csrf_token %}
                     {% for field in form %}
                     <div class="form-group">
-                      <label class="control-label" for="id_{{ field.name }}">{{ field.label }}</label>
+                        <!-- Si le template est appelé par /metacategorie/nouvelle/ le champ s'appelle Métacatégorie -->
+                        <label class="control-label" for="id_{{ field.name }}">
+                        {% if 'metacategorie' in request.path %}
+                            Métacatégorie
+                        {% else %}
+                            {{ field.label }}
+                        {% endif %}
+                        </label>
                         <div class="form-group">
                           <input class="form-control"
                             name="{{ field.name }}"
                             id="id_{{ field.name }}" 
-                            type = "text"
                             placeholder="{{ field.help_text }}"
                            </div>
                     </div>

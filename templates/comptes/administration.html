@@ -20,21 +20,30 @@
                     </div>
                     <div class="col-md-4">
                         <h3>Mes catégories</h3>
+                        <a class="btn btn-success" href="{% url 'metacategorie_create' %}">Ajouter une métacatégorie</a>
+                        <h1></h1>
                         {% for meta in metacategories_list %}
                             <div class="panel panel-primary">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">{{ meta }}</h3>
+                                    <h3 class="panel-title">
+                                        {{ meta }} &nbsp;
+                                        <a class="administration" href="{% url 'metacategorie_update' meta.categorie %}">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </a>
+                                    </h3>
                                 </div>
                                 <div class="panel-body">
                                     <ul class="list-group">
                                     {%for categorie in meta.meta.all %}
                                         <li class="list-group-item">{{ categorie }}</li>
                                     {% endfor %}
+                                    <a class="btn btn-success" href="{% url 'categorie_create' meta.id %}">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </a>
                                     </ul>
                                 </div>
                             </div>
                         {% endfor %}
-                        <a class="btn btn-success" href="{% url 'categorie_create' %}">Ajouter une catégorie</a>
                     </div>
                     <div class="col-md-4">
                         <h3>Mes Opérations</h3>
