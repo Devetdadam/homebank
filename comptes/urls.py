@@ -36,7 +36,7 @@ urlpatterns = [
         name='metacategorie_update'),
 
     # CATEGORIES
-    url(r'^categorie/nouvelle-categorie-dans-(?P<pk>.+)/$',
+    url(r'^categorie/nouvelle-categorie-dans-(?P<metacategorie>.+)/$',
         CategorieCreateView.as_view(),
         name='categorie_create'),
 

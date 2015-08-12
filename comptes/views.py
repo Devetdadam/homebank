@@ -100,15 +100,17 @@ class CategorieCreateView(CreateView):
     model = Categorie
     template_name = 'create.html'
     fields = ['categorie']
+    slug_url_kwarg = 'metacategorie'
+    slug_field = 'mecategorie'
     success_url = reverse_lazy('administration')
 
     def get_object(self):
-        return Categorie.objects.get(pk=self.request.GET.get('pk'))
+        return Categorie.objects.get(categorie=self.request.GET.get('metacategorie'))
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super(CategorieCreateView, self).get_context_data(**kwargs)
-        context['metacategorie'] = Categorie.objects.get(pk=self.kwargs.get('pk', None))
+        context['metacategorie'] = get_object_or_404(Categorie, categorie=self.kwargs['metacategorie'])
         return context
 
     # avant d'enregistrer, on implémente le champ 'proprietaire'
@@ -116,7 +118,7 @@ class CategorieCreateView(CreateView):
     def form_valid(self, form, **kwargs):
         user = self.request.user
         form.instance.proprietaire = user
-        metacategorie = Categorie.objects.get(pk=self.kwargs.get('pk', None))
+        metacategorie = get_object_or_404(Categorie, categorie=self.kwargs['metacategorie'])
         form.instance.ismeta = False
         form.instance.metacategorie = metacategorie
         return super(CategorieCreateView, self).form_valid(form)

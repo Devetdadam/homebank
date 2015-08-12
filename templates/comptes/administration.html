@@ -37,7 +37,7 @@
                                     {%for categorie in meta.meta.all %}
                                         <li class="list-group-item">{{ categorie }}</li>
                                     {% endfor %}
-                                    <a class="btn btn-success" href="{% url 'categorie_create' meta.id %}">
+                                    <a class="btn btn-success" href="{% url 'categorie_create' meta %}">
                                         <span class="glyphicon glyphicon-plus"></span>
                                     </a>
                                     </ul>
