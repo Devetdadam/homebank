@@ -1,12 +1,12 @@
 # coding: utf8
 from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse_lazy
-from django.contrib.auth.models import User
-from django.views.generic import ListView, TemplateView, CreateView, UpdateView, FormView
-from .models import Compte, Categorie
-# from .forms import MetacategorieForm
 
-# from .forms import CompteForm
+from django.contrib.auth.models import User
+from django.views.generic import ListView, TemplateView, CreateView,\
+    UpdateView
+
+from .models import Compte, Categorie
 
 
 # Page d'Accueil
@@ -27,21 +27,13 @@ class AdministrationListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(AdministrationListView, self).get_context_data(**kwargs)
         self.proprietaire = get_object_or_404(User, id=self.request.user.id)
-        context['metacategories_list'] = Categorie.objects.filter(proprietaire=self.proprietaire, ismeta=True)
-        context['categories_list'] = Categorie.objects.filter(proprietaire=self.proprietaire, ismeta=False)
+        context['metacategories_list'] = Categorie.objects.filter(
+            proprietaire=self.proprietaire, ismeta=True
+        )
+        context['categories_list'] = Categorie.objects.filter(
+            proprietaire=self.proprietaire, ismeta=False
+        )
         return context
-
-
-# Vues du modèle Compte
-# class CompteListView(ListView):
-#     """Liste des comptes créés"""
-#     model = Compte
-#     context_object_name = 'comptes_list'
-#     template_name = 'administration.html'
-
-#     def get_queryset(self):
-#         self.proprietaire = get_object_or_404(User, id=self.request.user.id)
-#         return Compte.objects.filter(proprietaire=self.proprietaire)
 
 
 class CompteCreateView(CreateView):
@@ -105,12 +97,16 @@ class CategorieCreateView(CreateView):
     success_url = reverse_lazy('administration')
 
     def get_object(self):
-        return Categorie.objects.get(categorie=self.request.GET.get('metacategorie'))
+        return Categorie.objects.get(
+            categorie=self.request.GET.get('metacategorie')
+        )
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super(CategorieCreateView, self).get_context_data(**kwargs)
-        context['metacategorie'] = get_object_or_404(Categorie, categorie=self.kwargs['metacategorie'])
+        context['metacategorie'] = get_object_or_404(
+            Categorie, categorie=self.kwargs['metacategorie']
+        )
         return context
 
     # avant d'enregistrer, on implémente le champ 'proprietaire'
@@ -118,7 +114,9 @@ class CategorieCreateView(CreateView):
     def form_valid(self, form, **kwargs):
         user = self.request.user
         form.instance.proprietaire = user
-        metacategorie = get_object_or_404(Categorie, categorie=self.kwargs['metacategorie'])
+        metacategorie = get_object_or_404(
+            Categorie, categorie=self.kwargs['metacategorie']
+        )
         form.instance.ismeta = False
         form.instance.metacategorie = metacategorie
         return super(CategorieCreateView, self).form_valid(form)

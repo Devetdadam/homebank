@@ -13,6 +13,7 @@
                 {% csrf_token %}
                     {% for field in form %}
                     <div class="form-group">
+                        <label>
                         <!-- Nouvelle Métacatégorie -->
                         {% if 'metacategorie' in request.path %}
                             Métacatégorie
@@ -37,9 +38,6 @@
                            </div>
                     </div>
                     {% endfor %}
-                    <!--<div class="checkbox">
-                        <label><input type="checkbox" value="">Cocher s'il s'agit d'une Métacatégorie</label>
-                    </div>-->
                     <button type="submit" class="btn btn-block btn-primary" value="Valider">Valider</button>
                     <input type="hidden" name="next" value="{{ next }}" />
                 </form>
